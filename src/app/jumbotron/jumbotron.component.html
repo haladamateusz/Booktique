@@ -1,0 +1,65 @@
+<div class="jumbotron-fluid">
+  <div class="container container-wrapper">
+    <div class="row row-wrapper ml-0 mr-0">
+      <div class="col-sm-6 no-padding-top-mobile">
+        <div class="row row-wrapper p-0">
+          <div class="col-sm-6 pt-0 pl-0">
+            <mat-card class="followers small-box">
+              <mat-card-header>
+                <h3>Obserwujący</h3>
+              </mat-card-header>
+              <mat-card-content class="pt-3">
+                <p>{{followers}}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-sm-6 pt-0">
+            <mat-card class="posts small-box">
+              <mat-card-header>
+                <h3>Posty</h3>
+              </mat-card-header>
+              <mat-card-content class="pt-3">
+                <p>{{postsCount}}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-sm-12 pt-0 pl-0">
+            <mat-card class="example-card mid-box">
+              <mat-card-header>
+                <h3>Kontakt</h3>
+              </mat-card-header>
+              <mat-card-content class="pt-3">
+                <p>
+                  <fa-icon [icon]="instagramIcon"></fa-icon>
+                  Instagram: @vickinestoruk @vickinestoruk.booktique
+                </p>
+                <p>
+                  <fa-icon [icon]="mailIcon"></fa-icon>
+                  Email: wnestoruk@onet.pl
+                </p>
+                <p>
+                  <fa-icon [icon]="websiteIcon"></fa-icon>
+                  Strona: vickinestoruk.com
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 pl-0">
+        <mat-card class="example-card big-box">
+          <mat-card-content>
+            <div class="row no-padding-x px-0">
+              <div class="col-sm-12 text-center">
+                <img src="{{profilePicture}}" class="img-fluid" alt="">
+              </div>
+              <div class="col-sm-12 text-center line-top">
+                <p style="width:60%;margin:0 auto">{{biography}}</p></div>
+
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
