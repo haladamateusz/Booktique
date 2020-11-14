@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PhotosService} from '../photos.service';
+import {Post} from '../post.interface';
+import {PostModalComponent} from '../post-modal/post-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-shell',
@@ -9,11 +12,12 @@ import {PhotosService} from '../photos.service';
 export class ShellComponent implements OnInit {
   biography: string;
   followers: string;
-  postsCount: string;
-  posts: [];
+  postsCount: number;
+  posts: Post[] = [];
   profilePicture: string;
 
-  constructor(private photosService: PhotosService) {
+  constructor(private photosService: PhotosService,
+              protected dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -23,7 +27,6 @@ export class ShellComponent implements OnInit {
   loadPhotos(): void {
     this.photosService.getProfileData().subscribe(results => {
       const data = results.graphql.user;
-      console.log(data);
       this.biography = data.biography.split('priv', 1);
       this.followers = data.edge_followed_by.count;
       this.postsCount = data.edge_owner_to_timeline_media.count;
@@ -33,14 +36,24 @@ export class ShellComponent implements OnInit {
       const texts = data.edge_owner_to_timeline_media.edges.map(post =>
         post.node.edge_media_to_caption.edges.map(d => d.node.text)
       );
-      // tslint:disable-next-line:prefer-for-of
-      // for (let i = 0; i < images.length; i++) {
-      //     this.posts.push({
-      //       image: images[i],
-      //       text: texts[i]
-      //     });
-      // }
       this.profilePicture = data.profile_pic_url_hd;
+      for (let i = 0; i < this.postsCount; i++) {
+          this.posts.push({
+            image: images[i],
+            text: texts[i]
+          });
+      }
+    });
+  }
+
+  openModal(p: Post): void {
+    this.dialog.open(PostModalComponent, {
+      autoFocus: false,
+      backdropClass: 'backdrop-background',
+      data: {
+        image: p.image,
+        text: p.text
+      }
     });
   }
 

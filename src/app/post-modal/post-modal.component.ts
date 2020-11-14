@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Post} from '../post.interface';
 
 @Component({
   selector: 'app-post-modal',
@@ -7,13 +8,12 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./post-modal.component.scss']
 })
 export class PostModalComponent {
-  img: string;
-  text: string;
-  hashtags: string;
+  post: Post;
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    this.img = data.img;
-    this.text = data.text;
-    this.hashtags = data.hashtags;
+    this.post = {
+      image: data.image,
+      text: data.text
+    };
   }
 
 }

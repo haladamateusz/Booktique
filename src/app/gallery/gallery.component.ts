@@ -1,30 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {PostModalComponent} from '../post-modal/post-modal.component';
-import {PhotosService} from '../photos.service';
+import {Component, Input, Output} from '@angular/core';
+import {EventEmitter} from '@angular/core';
+import {Post} from '../post.interface';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent{
+  @Input() posts;
+  @Output() openModal = new EventEmitter<Post>();
+  constructor() { }
 
-  constructor(protected dialog: MatDialog) { }
-
-  ngOnInit(): void {
+  showModal(post: Post): void {
+    this.openModal.emit(post);
   }
-
-
-  openModal(): void {
-    this.dialog.open(PostModalComponent, {
-      autoFocus: false,
-      backdropClass: 'backdrop-background',
-      data: {
-        img: 'https://image.shutterstock.com/image-photo/pooping-white-dog-shiba-inu-600w-1420432652.jpg',
-        text: 'Lorem ipsum ergo sum. Lorem ipsum ergo sum. Lorem ipsum ergo sum. Lorem ipsum ergo sum. Lorem ipsum ergo sum. Lorem ipsum ergo sum. Lorem ipsum ergo sum. ',
-        hashtags: '#sex #sexedpl #anjarubik'
-      }
-    });
-  }
-
 }

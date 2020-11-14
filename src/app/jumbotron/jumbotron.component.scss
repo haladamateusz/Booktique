@@ -53,11 +53,16 @@ mat-card-header{
 }
 
 .jumbotron-fluid{
-  background: #271c19;
+   background: #271c19;
 }
 .no-padding-x {
   margin-left: 0;
   margin-right: 0;
+}
+
+a {
+  color: initial; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
 
 @media only screen and (max-width: 768px) {
@@ -79,5 +84,8 @@ mat-card-header{
   .no-padding-x{
     padding-left: 0px;
     padding-right: 0px;
+  }
+  .no-padding-top-mobile{
+    padding-top: 0px;
   }
 }

@@ -6,20 +6,22 @@
           <button mat-dialog-close mat-flat-button color="primary">Zamknij</button>
       </div>
     </div>
+    <mat-dialog-content class="mat-typography">
     <div class="row text-center">
-      <div class="col-sm-12 mt-5">
-          <img class="img-fluid" src="{{img}}" alt="">
+      <div class="col-sm-6 ">
+          <img class="img-fluid rounded" src="{{post.image}}" alt="">
       </div>
-      <div class="col-sm-12 mt-5">
+      <div class="col-sm-6  d-flex align-items-center text-justify">
         <div>
-          <p>{{text}}</p>
+          <p>{{post.text}}</p>
         </div>
       </div>
-      <div class="col-sm-12 mt-3">
-        <div>
-          <p>{{hashtags}}</p>
-        </div>
-      </div>
+<!--      <div class="col-sm-12 mt-3">-->
+<!--        <div>-->
+<!--          <p>{{hashtags}}</p>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
+    </mat-dialog-content>
   </div>
 </div>

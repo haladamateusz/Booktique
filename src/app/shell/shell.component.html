@@ -8,4 +8,7 @@
   [postsCount]="postsCount"
   [profilePicture]="profilePicture"
 ></app-jumbotron>
-<app-gallery></app-gallery>
+<app-gallery
+[posts]="posts"
+(openModal)="openModal($event)"
+></app-gallery>

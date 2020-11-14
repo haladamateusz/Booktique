@@ -1,5 +1,4 @@
 @import "~bootstrap/dist/css/bootstrap.css";
-// Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
@@ -35,7 +34,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 /**
 * Generated theme by Material Theme Generator
@@ -285,7 +284,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 }
 
 body {
-  background: #55423d;
+  background: #FFEAE5;
 }
 .mat-dialog-container{
   background: #FFEAE5;
@@ -293,4 +292,9 @@ body {
 
 .backdrop-background {
   background-color: #55423d;
+}
+@media only screen and (max-width: 768px) {
+  .mat-dialog-container{
+    width: 100%;
+  }
 }
