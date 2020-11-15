@@ -15,6 +15,7 @@ export class ShellComponent implements OnInit {
   postsCount: number;
   posts: Post[] = [];
   profilePicture: string;
+  dataLoaded = false;
 
   constructor(private photosService: PhotosService,
               protected dialog: MatDialog) {
@@ -38,11 +39,12 @@ export class ShellComponent implements OnInit {
       );
       this.profilePicture = data.profile_pic_url_hd;
       for (let i = 0; i < this.postsCount; i++) {
-          this.posts.push({
-            image: images[i],
-            text: texts[i]
-          });
+        this.posts.push({
+          image: images[i],
+          text: texts[i]
+        });
       }
+      this.dataLoaded = true;
     });
   }
 

@@ -13,6 +13,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {PhotosService} from './photos.service';
 import {HttpClientModule} from '@angular/common/http';
 import { ShellComponent } from './shell/shell.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { ShellComponent } from './shell/shell.component';
         FontAwesomeModule,
         MatDialogModule,
         MatButtonModule,
+        MatProgressSpinnerModule,
         HttpClientModule
 
 

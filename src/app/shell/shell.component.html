@@ -2,13 +2,27 @@
   <span>Booktique</span>
   <span class="author"> by Vicki Nestoruk</span>
 </mat-toolbar>
-<app-jumbotron
+<div *ngIf="!dataLoaded" class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <mat-spinner class="mt-5 mx-auto"></mat-spinner>
+    </div>
+  </div>
+</div>
+<app-jumbotron *ngIf="dataLoaded"
   [biography]="biography"
   [followers]="followers"
   [postsCount]="postsCount"
   [profilePicture]="profilePicture"
 ></app-jumbotron>
-<app-gallery
+<app-gallery *ngIf="dataLoaded"
 [posts]="posts"
 (openModal)="openModal($event)"
 ></app-gallery>
+<div *ngIf="dataLoaded" class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <small class="text-muted pb-3">Made with ❤️ by <a href="https://www.haladamateusz.com">Mateusz Hałada</a>© 2020</small>
+    </div>
+  </div>
+</div>
