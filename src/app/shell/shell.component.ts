@@ -28,7 +28,7 @@ export class ShellComponent implements OnInit {
   loadPhotos(): void {
     this.photosService.getProfileData().subscribe(results => {
       const data = results.graphql.user;
-      this.biography = data.biography.split('priv', 1);
+      this.biography = data.biography.split('e-mail', 1);
       this.followers = data.edge_followed_by.count;
       this.postsCount = data.edge_owner_to_timeline_media.count;
       const images = data.edge_owner_to_timeline_media.edges.map(post =>
