@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-1": "ng build --prod --output-path docs"
+    "gh-pages-build": "ng build --prod --output-path docs"
   },
   "private": true,
   "dependencies": {
