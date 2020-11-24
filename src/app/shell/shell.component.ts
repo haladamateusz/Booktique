@@ -6,6 +6,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {map} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 
+// instagram is lazy-loading photos so with api call you can get only 12 of them
+const POSTS_LOADED = 12;
+
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
@@ -19,6 +22,8 @@ export class ShellComponent implements OnInit, OnDestroy {
   profilePicture: string;
   dataLoaded = false;
   photosStream: Subscription;
+
+
 
   constructor(private photosService: PhotosService,
               protected dialog: MatDialog) {
@@ -43,7 +48,7 @@ export class ShellComponent implements OnInit, OnDestroy {
     const texts = data.edge_owner_to_timeline_media.edges.map(post =>
       post.node.edge_media_to_caption.edges.map(d => d.node.text)
     );
-    for (let i = 0; i < this.postsCount; i++) {
+    for (let i = 0; i < POSTS_LOADED; i++) {
       this.posts.push({
         image: images[i],
         text: texts[i]
