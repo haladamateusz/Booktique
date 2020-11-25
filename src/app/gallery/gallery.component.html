@@ -1,12 +1,26 @@
+<!--<div class="container mt-5 pt-3 pb-5">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-12 mb-3 text-center">-->
+<!--      <div style="margin: 0 auto;width:50%;border-bottom:2px solid #e78fb3">-->
+<!--        <h1>Ostatnie posty</h1>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div *ngFor="let p of posts" class="col-sm-4 pt-4">-->
+<!--      <mat-card><img mat-card-image (click)="showModal(p)" src="{{p.image}}" alt="Post photo"></mat-card>-->
+<!--    </div>-->
+
 <div class="container mt-5 pt-3 pb-5">
   <div class="row">
-    <div class="col-sm-12 mb-3 text-center">
+    <div class="col-sm-12 mb-1 text-center">
       <div style="margin: 0 auto;width:50%;border-bottom:2px solid #e78fb3">
         <h1>Ostatnie posty</h1>
       </div>
     </div>
-    <div *ngFor="let p of posts" class="col-sm-4 pt-4">
-      <mat-card><img mat-card-image (click)="showModal(p)" src="{{p.image}}" alt="Post photo"></mat-card>
-    </div>
   </div>
 </div>
+  <mat-grid-list [cols]="cols" [gutterSize]="gutterSize" class="m-2">
+    <mat-grid-tile *ngFor="let p of posts">
+      <mat-card><img mat-card-image (click)="showModal(p)" src="{{p.image}}" alt="Post photo"></mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+

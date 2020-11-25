@@ -5,6 +5,7 @@ import {PostModalComponent} from '../post-modal/post-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {map} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 // instagram is lazy-loading photos so with api call you can get only 12 of them
 const POSTS_LOADED = 12;
@@ -16,17 +17,66 @@ const POSTS_LOADED = 12;
 })
 export class ShellComponent implements OnInit, OnDestroy {
   biography: string;
-  followers: string;
+  followers: number;
   postsCount: number;
   posts: Post[] = [];
   profilePicture: string;
   dataLoaded = false;
   photosStream: Subscription;
+  breakpointsStream: Subscription;
 
+  cols: number;
+  gutterSize: string;
+  gridByBreakpoint = {
+    xl: 4,
+    lg: 4,
+    md: 4,
+    sm: 3,
+    xs: 2
+  };
+
+  gutterSizeBreakpoint = {
+    xl: '10px',
+    lg: '10px',
+    md: '10px',
+    sm: '10px',
+    xs: '5px',
+  };
 
 
   constructor(private photosService: PhotosService,
-              protected dialog: MatDialog) {
+              protected dialog: MatDialog,
+              private breakpointObserver: BreakpointObserver) {
+    this.breakpointsStream = this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).subscribe(result => {
+      if (result.matches) {
+        if (result.breakpoints[Breakpoints.XSmall]) {
+          this.cols = this.gridByBreakpoint.xs;
+          this.gutterSize = this.gutterSizeBreakpoint.xs;
+        }
+        if (result.breakpoints[Breakpoints.Small]) {
+          this.cols = this.gridByBreakpoint.sm;
+          this.gutterSize = this.gutterSizeBreakpoint.sm;
+        }
+        if (result.breakpoints[Breakpoints.Medium]) {
+          this.cols = this.gridByBreakpoint.md;
+          this.gutterSize = this.gutterSizeBreakpoint.md;
+        }
+        if (result.breakpoints[Breakpoints.Large]) {
+          this.cols = this.gridByBreakpoint.lg;
+          this.gutterSize = this.gutterSizeBreakpoint.lg;
+        }
+        if (result.breakpoints[Breakpoints.XLarge]) {
+          this.cols = this.gridByBreakpoint.xl;
+          this.gutterSize = this.gutterSizeBreakpoint.xl;
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -70,6 +120,7 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.photosStream.unsubscribe();
+    this.breakpointsStream.unsubscribe();
   }
 
 }

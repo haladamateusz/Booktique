@@ -14,6 +14,7 @@ import {PhotosService} from './photos-service/photos.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ShellComponent} from './shell/shell.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -23,21 +24,21 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     PostModalComponent,
     ShellComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatCardModule,
-        FontAwesomeModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        HttpClientModule
-
-
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    FontAwesomeModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    MatGridListModule
+  ],
   providers: [PhotosService],
   bootstrap: [AppComponent],
   entryComponents: [PostModalComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
