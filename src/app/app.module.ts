@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {JumbotronComponent} from './jumbotron/jumbotron.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {GalleryComponent} from './gallery/gallery.component';
-import {PostModalComponent} from './post-modal/post-modal.component';
+import {PostModalComponent} from './gallery/post-modal/post-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {PhotosService} from './photos-service/photos.service';
 import {HttpClientModule} from '@angular/common/http';

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PhotosService} from '../photos-service/photos.service';
 import {Post} from '../post.interface';
-import {PostModalComponent} from '../post-modal/post-modal.component';
+import {PostModalComponent} from '../gallery/post-modal/post-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {map} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
