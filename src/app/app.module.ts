@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ShellComponent} from './shell/shell.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,21 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatButtonModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: ShellComponent,
+        children: [
+          {
+            path: ':postId',
+            component: PostModalComponent
+          }
+        ]
+      },
+      { path: '**', redirectTo: '' }
+    ])
+
   ],
   providers: [PhotosService],
   bootstrap: [AppComponent],

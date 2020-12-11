@@ -12,7 +12,8 @@ export class PostModalComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
     this.post = {
       image: data.image,
-      text: data.text
+      text: data.text,
+      id: data.id
     };
   }
 
