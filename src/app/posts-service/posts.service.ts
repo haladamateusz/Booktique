@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Post} from '../post.interface';
-import {map, tap} from 'rxjs/operators';
+import {map, switchMap, tap} from 'rxjs/operators';
 
 interface ProfileData {
   posts: Post[];
@@ -13,13 +13,22 @@ interface ProfileData {
   profilePicture: string;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class PhotosService {
+
   // instagram is lazy-loading photos so with api call you can get only 12 of them
-  private postsLoaded = 12;
-  private profileInfo = new BehaviorSubject<ProfileData>(null);
+  private POSTS_LOADED = 12;
+  private initData: ProfileData = {
+    posts: [],
+    followers: 0,
+    postsCount: 0,
+    biography: '',
+    profilePicture: ''
+  };
+  private profileInfo = new BehaviorSubject<ProfileData>(this.initData);
 
   constructor(public http: HttpClient) {
   }
@@ -28,8 +37,7 @@ export class PhotosService {
     return this.profileInfo.asObservable();
   }
 
-  // tslint:disable-next-line:typedef
-  fetchProfileData() {
+  fetchProfileData(): Observable<ProfileData> {
     return this.http.get(environment.url)
       .pipe(
         map((res: any) => res.graphql.user),
@@ -44,7 +52,8 @@ export class PhotosService {
           );
           const ids = data.edge_owner_to_timeline_media.edges.map(post =>
             post.node.id);
-          for (let i = 0; i < this.postsLoaded; i++) {
+
+          for (let i = 0; i < this.POSTS_LOADED; i++) {
             posts.push({
               image: images[i],
               text: texts[i],
