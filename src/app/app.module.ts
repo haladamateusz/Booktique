@@ -10,12 +10,13 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {GalleryComponent} from './gallery/gallery.component';
 import {PostModalComponent} from './gallery/post-modal/post-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {PhotosService} from './photos-service/photos.service';
+import {PostService} from './posts-service/post.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ShellComponent} from './shell/shell.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {RouterModule} from '@angular/router';
+import { PostEntryComponent } from './gallery/post-entry/post-entry.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {RouterModule} from '@angular/router';
     JumbotronComponent,
     GalleryComponent,
     PostModalComponent,
-    ShellComponent
+    ShellComponent,
+    PostEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -42,16 +44,16 @@ import {RouterModule} from '@angular/router';
         component: ShellComponent,
         children: [
           {
-            path: ':postId',
-            component: PostModalComponent
+            path: 'post/:postId',
+            component: PostEntryComponent
           }
         ]
       },
-      { path: '**', redirectTo: '' }
+      { path: '**', redirectTo: 'home' }
     ])
 
   ],
-  providers: [PhotosService],
+  providers: [PostService],
   bootstrap: [AppComponent],
   entryComponents: [PostModalComponent]
 })
