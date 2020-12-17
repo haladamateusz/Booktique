@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class GalleryComponent {
   @Input() posts: Post[];
-  @Output() openModal = new EventEmitter<Post>();
+  // @Output() openModal = new EventEmitter<Post>();
   @Input() cols: number;
   @Input() gutterSize: string;
 
@@ -26,7 +26,7 @@ export class GalleryComponent {
   //   };
   // }
 
-  showModal(post: Post): void {
-    this.openModal.emit(post);
-  }
+  // showModal(post: Post): void {
+  //   this.openModal.emit(post);
+  // }
 }

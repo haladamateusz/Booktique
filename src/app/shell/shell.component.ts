@@ -1,20 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PhotosService} from '../photos-service/photos.service';
+import {PostService} from '../posts-service/post.service';
 import {Post} from '../post.interface';
-import {PostModalComponent} from '../gallery/post-modal/post-modal.component';
-import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {ActivatedRoute, Router} from '@angular/router';
-import {switchMap, tap} from 'rxjs/operators';
 
-interface ProfileData {
-  posts: Post[];
-  biography: string;
-  followers: number;
-  postsCount: number;
-  profilePicture: string;
-}
 
 @Component({
   selector: 'app-shell',
@@ -51,11 +40,9 @@ export class ShellComponent implements OnInit, OnDestroy {
   };
 
 
-  constructor(private photosService: PhotosService,
-              protected dialog: MatDialog,
-              private breakpointObserver: BreakpointObserver,
-              private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private postService: PostService,
+              private breakpointObserver: BreakpointObserver
+  ) {
     this.breakpoints$ = this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -86,45 +73,28 @@ export class ShellComponent implements OnInit, OnDestroy {
         }
       }
     });
-
-    // this.route.paramMap.subscribe(paramMap => {
-    //   if (paramMap.has('postId')) {
-    //     console.log(paramMap.get('postId'));
-    //   }
-      // this.placeSubs = this.placesService.getPlace(paramMap.get('placeId')).subscribe(place => {
-      //   this.place = place;
-      // });
-    // });
   }
 
   ngOnInit(): void {
-    this.posts$ = this.photosService.fetchProfileData().pipe(
-      switchMap(val => this.photosService.profileData),
-      tap((data: ProfileData) => {
-        this.posts = data.posts;
-        this.biography = data.biography;
-        this.profilePicture = data.profilePicture;
-        this.postsCount = data.postsCount;
-        this.followers = data.followers;
-      })
-    ).subscribe(() => {
+    this.postService.fetchProfileData().subscribe(() => {
         this.dataLoaded = true;
       },
       error => {
+        console.log(error);
         this.errorOccurred = true;
       });
-  }
+    this.posts$ = this.postService.profileData.subscribe(data => {
 
-  openModal(p: Post): void {
-    this.dialog.open(PostModalComponent, {
-      autoFocus: false,
-      backdropClass: 'backdrop-background',
-      data: {
-        image: p.image,
-        text: p.text
-      }
+      // data dataLoaded is moved here just for debug purposes
+      // this.dataLoaded = true;
+      this.posts = data.posts;
+      this.followers = data.followers;
+      this.postsCount = data.postsCount;
+      this.biography = data.biography;
+      this.profilePicture = data.profilePicture;
     });
   }
+
 
   ngOnDestroy(): void {
     this.posts$.unsubscribe();

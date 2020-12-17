@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Post} from '../../post.interface';
 
 @Component({
@@ -8,13 +8,12 @@ import {Post} from '../../post.interface';
   styleUrls: ['./post-modal.component.scss']
 })
 export class PostModalComponent {
-  post: Post;
+  text: string;
+  image: string;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    this.post = {
-      image: data.image,
-      text: data.text,
-      id: data.id
-    };
+    this.image = data.image;
+    this.text = data.text;
   }
 
 }

@@ -26,7 +26,6 @@
              [posts]="posts"
              [cols]="cols"
              [gutterSize]="gutterSize"
-             (openModal)="openModal($event)"
 ></app-gallery>
 <div *ngIf="dataLoaded && !errorOccurred" class="container">
   <div class="row">
@@ -36,4 +35,4 @@
     </div>
   </div>
 </div>
-<router-outlet name="modal"></router-outlet>
+<router-outlet></router-outlet>
