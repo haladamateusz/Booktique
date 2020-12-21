@@ -8,12 +8,15 @@ import {Post} from '../../post.interface';
   styleUrls: ['./post-modal.component.scss']
 })
 export class PostModalComponent {
-  text: string;
-  image: string;
+  post = {
+    image: '',
+    text: ''
+  };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    this.image = data.image;
-    this.text = data.text;
+    console.log('ppp', data);
+    this.post.image = data.image;
+    this.post.text = data.text;
   }
 
 }
