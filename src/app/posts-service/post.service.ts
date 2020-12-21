@@ -84,8 +84,8 @@ export class PostService {
       take(1),
       map((data: ProfileData) => {
           console.log(data.posts);
-          console.log(data.posts[postId]);
-          return data.posts[postId];
+          console.log(data.posts.find(p => p.id === postId));
+          return data.posts.find(p => p.id === postId);
         }
       ));
   }
