@@ -3,7 +3,7 @@ import {PostModalComponent} from '../post-modal/post-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../posts-service/post.service';
-import {map, switchMap, tap} from 'rxjs/operators';
+import {map, switchMap, take, tap} from 'rxjs/operators';
 
 
 @Component({
@@ -16,10 +16,13 @@ export class PostEntryComponent {
               private postService: PostService) {
 
     this.route.paramMap.pipe(
+      take(1),
       switchMap(paramMap => {
-        return this.postService.getPostData(+paramMap.get('postId'));
+        const id = paramMap.get('postId');
+        return this.postService.getPostData(+id);
       })
     ).subscribe(data => {
+      console.log('ccc', data);
       const dialogRef = this.dialog.open(PostModalComponent,
         {
           autoFocus: false,
