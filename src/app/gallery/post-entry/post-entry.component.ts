@@ -16,7 +16,7 @@ export class PostEntryComponent {
               private postService: PostService) {
 
     this.route.paramMap.pipe(
-      // take(1),
+      take(1),
       switchMap(paramMap => {
         const id = paramMap.get('postId');
         return this.postService.getPostData(+id);
