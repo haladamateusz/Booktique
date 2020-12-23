@@ -14,7 +14,6 @@ export class PostModalComponent {
   };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    console.log('ppp', data);
     this.post.image = data.image;
     this.post.text = data.text;
   }
