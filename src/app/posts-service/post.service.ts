@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Post} from '../post.interface';
-import {map, switchMap, take, tap} from 'rxjs/operators';
+import {concatMap, last, map, skipWhile, switchMap, take, takeWhile, tap} from 'rxjs/operators';
 
 interface ProfileData {
   posts: Post[];
@@ -74,18 +74,19 @@ export class PostService {
 
   getPostData(postId: number): Observable<Post> {
     return this.profileInfo.asObservable().pipe(
-      switchMap( (data: ProfileData) => {
+      switchMap((data: ProfileData) => {
         if (!data || data.posts.length <= 0) {
           return this.fetchProfileData();
         } else {
           return of(data);
         }
       }),
+      skipWhile(data => data.posts.length < 1),
       take(1),
       map((data: ProfileData) => {
-          console.log(data.posts);
-          console.log(data.posts.find(p => p.id === postId));
-          return data.posts.find(p => p.id === postId);
+          if (data.posts) {
+            return data.posts.find(p => p.id === postId);
+          }
         }
       ));
   }
