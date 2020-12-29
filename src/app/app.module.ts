@@ -16,7 +16,7 @@ import {ShellComponent} from './shell/shell.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {RouterModule} from '@angular/router';
-import { PostEntryComponent } from './gallery/post-entry/post-entry.component';
+import {PostEntryComponent} from './gallery/post-entry/post-entry.component';
 
 @NgModule({
   declarations: [
@@ -40,16 +40,23 @@ import { PostEntryComponent } from './gallery/post-entry/post-entry.component';
     MatGridListModule,
     RouterModule.forRoot([
       {
-        path: '',
+        path: 'home',
         component: ShellComponent,
         children: [
           {
-            path: 'post/:postId',
-            component: PostEntryComponent
+            path: ':postId',
+            component: PostEntryComponent,
+            outlet: 'post'
+          },
+          {
+            path: '',
+            redirectTo: 'home',
+            pathMatch: 'full'
           }
         ]
       },
-      { path: '**', redirectTo: 'home' }
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path: '**', redirectTo: 'home'}
     ])
 
   ],

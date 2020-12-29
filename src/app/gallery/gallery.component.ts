@@ -10,23 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class GalleryComponent {
   @Input() posts: Post[];
-  // @Output() openModal = new EventEmitter<Post>();
   @Input() cols: number;
   @Input() gutterSize: string;
 
-  // constructor(private router: Router,
-  //             private route: ActivatedRoute) {
-  //   this.route.paramMap.subscribe(paramMap => {
-  //     if (!paramMap.has('placeId')) {
-  //       this.router.navigateByUrl('');
-  //       return;
-  //     }
-  //     const placeId = paramMap.get('placeId');
-  //     this.showModal(placeId);
-  //   };
-  // }
-
-  // showModal(post: Post): void {
-  //   this.openModal.emit(post);
-  // }
 }

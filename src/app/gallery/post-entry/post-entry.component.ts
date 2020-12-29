@@ -1,15 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {PostModalComponent} from '../post-modal/post-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../posts-service/post.service';
-import {last, map, skipWhile, switchMap, take, tap} from 'rxjs/operators';
+import {switchMap, take} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
 
 
 @Component({
   template: ''
 })
-export class PostEntryComponent {
+export class PostEntryComponent implements OnDestroy {
+  ModalSub: Subscription;
+
   constructor(public dialog: MatDialog,
               public router: Router,
               public route: ActivatedRoute,
@@ -31,9 +34,13 @@ export class PostEntryComponent {
             text: data.text
           }
         });
-      dialogRef.afterClosed().subscribe(() => {
-        this.router.navigate(['../../'], {relativeTo: this.route});
+      this.ModalSub = dialogRef.afterClosed().subscribe(() => {
+        this.router.navigateByUrl('/home');
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ModalSub.unsubscribe();
   }
 }
