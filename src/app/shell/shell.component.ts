@@ -98,6 +98,7 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.posts$.unsubscribe();
+    this.breakpoints$.unsubscribe();
   }
 
 }
