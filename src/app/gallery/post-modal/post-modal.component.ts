@@ -23,7 +23,13 @@ export class PostModalComponent {
   navigate(id: number): void {
     this.postService.getPostData(+id).pipe(take(1)).subscribe(p => {
       this.post = p;
-      this.router.navigateByUrl(`p/${id}`);
+      if (id < 12 && id > 1) {
+        this.router.navigateByUrl(`p/${id}`);
+      } else if (id > 12) {
+        this.router.navigateByUrl('p/1');
+      } else {
+        this.router.navigateByUrl('p/12');
+      }
     });
   }
 }
