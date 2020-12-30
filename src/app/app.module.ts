@@ -40,29 +40,21 @@ import {PostEntryComponent} from './gallery/post-entry/post-entry.component';
     MatGridListModule,
     RouterModule.forRoot([
       {
-        path: 'home',
+        path: '',
         component: ShellComponent,
         children: [
           {
-            path: ':postId',
-            component: PostEntryComponent,
-            outlet: 'post'
-          },
-          {
-            path: '',
-            redirectTo: 'home',
-            pathMatch: 'full'
+            path: 'p/:postId',
+            component: PostEntryComponent
           }
         ]
       },
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: '**', redirectTo: 'home'}
-    ])
+      {path: '**', redirectTo: ''}
+    ], {useHash: true})
 
   ],
   providers: [PostService],
-  bootstrap: [AppComponent],
-  entryComponents: [PostModalComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

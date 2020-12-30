@@ -31,11 +31,12 @@ export class PostEntryComponent implements OnDestroy {
           backdropClass: 'backdrop-background',
           data: {
             image: data.image,
-            text: data.text
+            text: data.text,
+            id: data.id
           }
         });
       this.ModalSub = dialogRef.afterClosed().subscribe(() => {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('');
       });
     });
   }

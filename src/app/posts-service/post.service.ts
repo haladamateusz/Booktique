@@ -13,8 +13,11 @@ interface ProfileData {
   profilePicture: string;
 }
 
-// tslint:disable-next-line:max-line-length
-// const LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a dui aliquam, maximus dolor posuere, commodo ipsum. Donec feugiat augue nec mi hendrerit laoreet. Nullam tristique egestas pretium. Maecenas magna odio, semper nec ex quis, faucibus dapibus erat. Quisque ac iaculis eros. Sed ac tellus enim. Nullam pretium efficitur ultricies. Vivamus suscipit elit ut eros iaculis pretium. Nam lacinia quam sit amet mauris semper, quis egestas urna tincidunt.';
+// const LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a dui aliquam, maximus' +
+//   ' dolor posuere, commodo ipsum. Donec feugiat augue nec mi hendrerit laoreet. Nullam tristique egestas pretium. ' +
+//   'Maecenas magna odio, semper nec ex quis, faucibus dapibus erat. Quisque ac iaculis eros. Sed ac tellus enim. ' +
+//   'Nullam pretium efficitur ultricies. Vivamus suscipit elit ut eros iaculis pretium. Nam lacinia quam sit amet mauris semper, ' +
+//   'quis egestas urna tincidunt.';
 // const PICSUM = 'https://picsum.photos/200';
 
 @Injectable({
