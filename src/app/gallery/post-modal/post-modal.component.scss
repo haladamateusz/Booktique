@@ -11,6 +11,15 @@ mat-card-actions {
   padding-top: 0;
 }
 
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+fa-icon{
+  &:hover{
+    cursor: pointer;
+  }
+}
 @media only screen and (max-width: 768px) {
   .wrapper {
     width: 100%;
@@ -29,6 +38,3 @@ mat-card-actions {
   }
 }
 
-.mat-dialog-actions {
-  justify-content: flex-end;
-}
