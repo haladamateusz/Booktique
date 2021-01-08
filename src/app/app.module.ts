@@ -50,7 +50,7 @@ import {PostEntryComponent} from './gallery/post-entry/post-entry.component';
         ]
       },
       {path: '**', redirectTo: ''}
-    ], {useHash: true})
+    ])
 
   ],
   providers: [PostService],
