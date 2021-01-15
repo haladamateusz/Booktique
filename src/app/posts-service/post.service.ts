@@ -72,7 +72,14 @@ export class PostService {
   }
 
   get profileData(): Observable<ProfileData> {
-    return this.profileInfo.asObservable();
+    return this.profileInfo.asObservable().pipe(
+      switchMap((data: ProfileData) => {
+        if (!data || data.posts.length <= 0) {
+          return this.fetchProfileData();
+        } else {
+          return of(data);
+        }
+      }));
   }
 
   getPostData(postId: number): Observable<Post> {

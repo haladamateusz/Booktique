@@ -76,23 +76,18 @@ export class ShellComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.postService.fetchProfileData().subscribe(() => {
+    this.posts$ = this.postService.profileData.subscribe(data => {
         this.dataLoaded = true;
+        this.posts = data.posts;
+        this.followers = data.followers;
+        this.postsCount = data.postsCount;
+        this.biography = data.biography;
+        this.profilePicture = data.profilePicture;
       },
       error => {
         console.log(error);
         this.errorOccurred = true;
       });
-    this.posts$ = this.postService.profileData.subscribe(data => {
-
-      // data dataLoaded is moved here just for debug purposes
-      // this.dataLoaded = true;
-      this.posts = data.posts;
-      this.followers = data.followers;
-      this.postsCount = data.postsCount;
-      this.biography = data.biography;
-      this.profilePicture = data.profilePicture;
-    });
   }
 
 
