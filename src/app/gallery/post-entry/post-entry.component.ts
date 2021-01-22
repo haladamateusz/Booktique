@@ -5,12 +5,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../posts-service/post.service';
 import {switchMap, take} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
+import {Post} from '../../post.interface';
 
 
 @Component({
   template: ''
 })
-export class PostEntryComponent implements OnDestroy {
+export class PostEntryComponent{
   ModalSub: Subscription;
 
   constructor(public dialog: MatDialog,
@@ -23,25 +24,23 @@ export class PostEntryComponent implements OnDestroy {
       switchMap(paramMap => {
         const id = paramMap.get('postId');
         return this.postService.getPostData(+id);
-      })
-    ).subscribe(data => {
-      const dialogRef = this.dialog.open(PostModalComponent,
-        {
-          autoFocus: false,
-          backdropClass: 'backdrop-background',
-          data: {
-            image: data.image,
-            text: data.text,
-            id: data.id
-          }
-        });
-      this.ModalSub = dialogRef.afterClosed().subscribe(() => {
-        this.router.navigateByUrl('');
-      });
+      }),
+      take(1),
+      switchMap((data: Post) => {
+        const dialogRef = this.dialog.open(PostModalComponent,
+          {
+            autoFocus: false,
+            backdropClass: 'backdrop-background',
+            data: {
+              image: data.image,
+              text: data.text,
+              id: data.id
+            }
+          });
+        return dialogRef.afterClosed();
+      })).subscribe(() => {
+      this.router.navigateByUrl('');
     });
   }
-
-  ngOnDestroy(): void {
-    this.ModalSub.unsubscribe();
-  }
 }
+

@@ -79,7 +79,9 @@ export class PostService {
         } else {
           return of(data);
         }
-      }));
+      }),
+      skipWhile(data => data.posts.length < 1),
+      take(1));
   }
 
   getPostData(postId: number): Observable<Post> {
