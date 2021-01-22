@@ -77,7 +77,6 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.posts$ = this.postService.profileData.subscribe(data => {
-        this.dataLoaded = true;
         this.posts = data.posts;
         this.followers = data.followers;
         this.postsCount = data.postsCount;
@@ -87,6 +86,9 @@ export class ShellComponent implements OnInit, OnDestroy {
       error => {
         console.log(error);
         this.errorOccurred = true;
+      },
+      () => {
+        this.dataLoaded = true;
       });
   }
 
