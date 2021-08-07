@@ -1,7 +1,22 @@
 
-div{
-  width: 100%;
-  padding: 15px
+//div{
+//  width: 100%;
+//  padding: 15px
+//}
+
+.jumbotron-fluid{
+  background: #271c19;
+
+  mat-card{
+    background: #FFF1EE;
+    flex: 1 0 auto;
+    width: 0;
+
+    mat-card-header{
+      border-bottom: 2px solid #e78fb3;
+    }
+  }
+
 }
 
 .card-container .card:not(.highlight-card):hover {
@@ -9,16 +24,13 @@ div{
   box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
 
-mat-card{
-  background: #FFF1EE;
-}
 
-mat-card-header{
-  border-bottom: 2px solid #e78fb3;
-}
+
+
 
 .line-top{
   border-top: 2px solid #e78fb3;
+  margin-top: 13px;
 }
 
 .small-box{
@@ -45,21 +57,8 @@ mat-card-header{
 .col-sm-6, .col-sm-12{
   padding-right: 0;
 }
-.no-padding-top{
-  padding-top: 0;
-}
 
-.no-padding-left{
-  padding-left: 0;
-}
 
-.jumbotron-fluid{
-   background: #271c19;
-}
-.no-padding-x {
-  margin-left: 0;
-  margin-right: 0;
-}
 
 a {
   color: initial; /* blue colors for links too */
@@ -67,26 +66,14 @@ a {
 }
 
 @media only screen and (max-width: 768px) {
+
   .row-wrapper {
     flex-direction: column-reverse;
-  }
-  .container-wrapper{
-  text-align: -webkit-center;
   }
   .col-sm-6, .col-sm-12{
     padding-left:  0;
   }
   .big-box{
     min-height: 320px;
-  }
-  .mid-box{
-    padding-top: 15px;
-  }
-  .no-padding-x{
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .no-padding-top-mobile{
-    padding-top: 0;
   }
 }
