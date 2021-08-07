@@ -1,10 +1,10 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Post} from '../../post.interface';
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
-import {Router} from '@angular/router';
-import {PostService} from '../../posts-service/post.service';
-import {take} from 'rxjs/operators';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Post } from '../../interfaces/post.interface';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { PostService } from '../../posts-service/post.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-modal',
@@ -21,13 +21,12 @@ export class PostModalComponent {
   }
 
   navigate(id: number): void {
-    if (id > 12){
+    if (id > this.postService.postsLoaded) {
       id = 1;
+    } else if (id < 1) {
+      id = this.postService.postsLoaded;
     }
-    else if (id < 1){
-      id = 12;
-    }
-    this.postService.getPostData(+id).pipe(take(1)).subscribe(p => {
+    this.postService.getPostData(+id).pipe(take(1)).subscribe((p: Post) => {
       this.post = p;
       this.router.navigateByUrl(`p/${id}`);
     });

@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../posts-service/post.service';
 import { switchMap, take } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { Post } from '../../post.interface';
+import { Post } from '../../interfaces/post.interface';
 
 
 @Component({
@@ -23,6 +22,7 @@ export class PostEntryComponent {
         const id = paramMap.get('postId');
         return this.postService.getPostData(+id);
       }),
+      take(1),
       switchMap((data: Post) => {
         const dialogRef = this.dialog.open(PostModalComponent,
           {
