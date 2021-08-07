@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule} from '@angular/common/http/testing';
 
 import {ShellComponent} from './shell.component';
@@ -9,7 +9,7 @@ describe('ShellComponent', () => {
   let fixture: ComponentFixture<ShellComponent>;
   let de: DebugElement;
   let header: HTMLElement;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ShellComponent],
       imports: [HttpClientTestingModule]

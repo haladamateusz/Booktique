@@ -39,18 +39,18 @@ import {PostEntryComponent} from './gallery/post-entry/post-entry.component';
     HttpClientModule,
     MatGridListModule,
     RouterModule.forRoot([
-      {
+    {
         path: '',
         component: ShellComponent,
         children: [
-          {
-            path: 'p/:postId',
-            component: PostEntryComponent
-          }
+            {
+                path: 'p/:postId',
+                component: PostEntryComponent
+            }
         ]
-      },
-      {path: '**', redirectTo: ''}
-    ])
+    },
+    { path: '**', redirectTo: '' }
+], { relativeLinkResolution: 'legacy' })
 
   ],
   providers: [PostService],
