@@ -14,6 +14,4 @@ export class JumbotronComponent {
   @Input() postsCount: number;
   @Input() profilePicture: string;
 
-  constructor() {
-  }
 }

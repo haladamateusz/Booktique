@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostService} from '../posts-service/post.service';
-import {Post} from '../post.interface';
+import {Post} from '../interfaces/post.interface';
 import {Subscription} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
@@ -18,7 +18,6 @@ export class ShellComponent implements OnInit, OnDestroy {
   profilePicture: string;
   dataLoaded = false;
   errorOccurred = false;
-  posts$: Subscription;
   breakpoints$: Subscription;
 
   cols: number;
@@ -76,7 +75,7 @@ export class ShellComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.posts$ = this.postService.profileData.subscribe(data => {
+    this.postService.profileData.subscribe(data => {
         this.posts = data.posts;
         this.followers = data.followers;
         this.postsCount = data.postsCount;
@@ -94,7 +93,6 @@ export class ShellComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.posts$.unsubscribe();
     this.breakpoints$.unsubscribe();
   }
 

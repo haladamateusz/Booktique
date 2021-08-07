@@ -2,10 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { mockData } from '../app/gallery/utils/debug.data';
+
 export const environment = {
   production: false,
-  url: 'https://www.instagram.com/vickinestoruk.booktique/?__a=1'
-  // url: 'https://jsonplaceholder.typicode.com/posts/1'
+  url: 'https://www.instagram.com/vickinestoruk.booktique/?__a=1',
+  initialData: mockData
 };
 
 /*

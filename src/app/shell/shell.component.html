@@ -2,37 +2,46 @@
   <span>Booktique</span>
   <span class="author"> by Vicki Nestoruk</span>
 </mat-toolbar>
-<div *ngIf="errorOccurred" class="container">
-  <div class="row my-5 py-5">
-    <div class="col-sm-12 py-5 my-5 text-center">
-      <p>An error occurred. Please try again later. </p>
+
+<ng-container *ngIf="errorOccurred; else showLoader">
+  <div class="container">
+    <div class="row my-5 py-5">
+      <div class="col-sm-12 py-5 my-5 text-center">
+        <p>An error occurred. Please try again later. </p>
+      </div>
     </div>
   </div>
-</div>
-<div *ngIf="!dataLoaded && !errorOccurred">
-  <div class="row">
-    <div class="col-sm-12">
-      <mat-spinner class="mt-5 mx-auto"></mat-spinner>
+</ng-container>
+
+<ng-template #showLoader>
+  <ng-container *ngIf="!dataLoaded && !errorOccurred; else showData">
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-spinner class="mt-5 mx-auto"></mat-spinner>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #showData>
+  <app-jumbotron *ngIf="dataLoaded"
+                 [biography]="biography"
+                 [followers]="followers"
+                 [postsCount]="postsCount"
+                 [profilePicture]="profilePicture"
+  ></app-jumbotron>
+  <app-gallery *ngIf="dataLoaded && !errorOccurred"
+               [posts]="posts"
+               [cols]="cols"
+               [gutterSize]="gutterSize"
+  ></app-gallery>
+  <div *ngIf="dataLoaded && !errorOccurred" class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <small class="text-muted pb-3">Made with ❤️ by <a href="https://haladamateusz.com">Mateusz Hałada</a>©
+          2020</small>
+      </div>
     </div>
   </div>
-</div>
-<app-jumbotron *ngIf="dataLoaded"
-               [biography]="biography"
-               [followers]="followers"
-               [postsCount]="postsCount"
-               [profilePicture]="profilePicture"
-></app-jumbotron>
-<app-gallery *ngIf="dataLoaded && !errorOccurred"
-             [posts]="posts"
-             [cols]="cols"
-             [gutterSize]="gutterSize"
-></app-gallery>
-<div *ngIf="dataLoaded && !errorOccurred" class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <small class="text-muted pb-3">Made with ❤️ by <a href="https://haladamateusz.com">Mateusz Hałada</a>©
-        2020</small>
-    </div>
-  </div>
-</div>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</ng-template>

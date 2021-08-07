@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Post} from '../post.interface';
+import {Post} from '../interfaces/post.interface';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {ActivatedRoute, Router} from '@angular/router';
 
