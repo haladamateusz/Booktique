@@ -1,5 +1,3 @@
-
-// For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
 @include mat.core();
 // Plus imports for other components in your app.
@@ -7,8 +5,6 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-
-
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -75,7 +71,7 @@ $dark-disabled-text: rgba($dark-primary-text, 0.38);
 $dark-dividers: rgba($dark-primary-text, 0.12);
 $dark-focused: rgba($dark-primary-text, 0.12);
 
-$mat-light-theme-foreground: (
+mat.$light-theme-foreground-palette: (
   base:              black,
   divider:           $dark-dividers,
   dividers:          $dark-dividers,
@@ -102,7 +98,7 @@ $light-disabled-text: rgba($light-primary-text, 0.5);
 $light-dividers: rgba($light-primary-text, 0.12);
 $light-focused: rgba($light-primary-text, 0.12);
 
-$mat-dark-theme-foreground: (
+mat.$dark-theme-foreground-palette: (
   base:              $light-text,
   divider:           $light-dividers,
   dividers:          $light-dividers,
@@ -133,7 +129,7 @@ $dark-bg-tooltip:     lighten(#2c2c2c, 20%);
 $dark-bg-alpha-4:     rgba(#2c2c2c, 0.04);
 $dark-bg-alpha-12:    rgba(#2c2c2c, 0.12);
 
-$mat-light-theme-background: (
+mat.$light-theme-background-palette: (
   background:               $light-background,
   status-bar:               $light-bg-darker-20,
   app-bar:                  $light-bg-darker-5,
@@ -161,7 +157,7 @@ $light-bg-alpha-4:    rgba(#fafafa, 0.04);
 $light-bg-alpha-12:   rgba(#fafafa, 0.12);
 
 // Background palette for dark themes.
-$mat-dark-theme-background: (
+mat.$dark-theme-background-palette: (
   background:               $dark-background,
   status-bar:               $dark-bg-lighter-20,
   app-bar:                  $dark-bg-lighter-5,
